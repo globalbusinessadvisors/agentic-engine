@@ -90,6 +90,7 @@ Follow these steps to set up the Agentic Engine locally.
    DATABASE_URL=your_database_url
    SECRET_KEY=your_secret_key
    OPENAI_API_KEY=your_openai_api_key
+   HUGGINGFACE_API_KEY=your_huggingface_api_key
    ```
 
 5. **Run Database Migrations**

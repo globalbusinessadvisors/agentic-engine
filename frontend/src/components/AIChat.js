@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import HuggingChatUI from 'hugging-chat-ui';
 
 const AIChat = () => {
   const [messages, setMessages] = useState([]);
@@ -37,7 +36,11 @@ const AIChat = () => {
   return (
     <div>
       <h1>AI Chat</h1>
-      <HuggingChatUI messages={messages} onSendMessage={handleSendMessage} />
+      <div>
+        {messages.map((message, index) => (
+          <div key={index}>{message}</div>
+        ))}
+      </div>
       <form onSubmit={handleSendMessage}>
         <input
           type="text"
