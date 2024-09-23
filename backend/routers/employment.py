@@ -11,42 +11,49 @@ class EmploymentCreate(BaseModel):
     agent_id: int
     position: str
     start_date: str
-    end_date: str
+    end_date: str = None
 
 class EmploymentResponse(BaseModel):
     id: int
     agent_id: int
     position: str
     start_date: str
-    end_date: str
+    end_date: str = None
 
 @router.post("/", response_model=EmploymentResponse)
 def create_employment(employment: EmploymentCreate, db: Session = Depends(get_db)):
-    db_employment = Employment(**employment.dict())
+    db_employment = Employment(
+        agent_id=employment.agent_id,
+        position=employment.position,
+        start_date=employment.start_date,
+        end_date=employment.end_date
+    )
     db.add(db_employment)
     db.commit()
     db.refresh(db_employment)
     return db_employment
 
 @router.get("/", response_model=List[EmploymentResponse])
-def read_employment(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    employment_records = db.query(Employment).offset(skip).limit(limit).all()
-    return employment_records
+def read_employments(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    employments = db.query(Employment).offset(skip).limit(limit).all()
+    return employments
 
 @router.get("/{employment_id}", response_model=EmploymentResponse)
-def read_employment_by_id(employment_id: int, db: Session = Depends(get_db)):
-    employment_record = db.query(Employment).filter(Employment.id == employment_id).first()
-    if employment_record is None:
+def read_employment(employment_id: int, db: Session = Depends(get_db)):
+    employment = db.query(Employment).filter(Employment.id == employment_id).first()
+    if employment is None:
         raise HTTPException(status_code=404, detail="Employment record not found")
-    return employment_record
+    return employment
 
 @router.put("/{employment_id}", response_model=EmploymentResponse)
 def update_employment(employment_id: int, employment: EmploymentCreate, db: Session = Depends(get_db)):
     db_employment = db.query(Employment).filter(Employment.id == employment_id).first()
     if db_employment is None:
         raise HTTPException(status_code=404, detail="Employment record not found")
-    for key, value in employment.dict().items():
-        setattr(db_employment, key, value)
+    db_employment.agent_id = employment.agent_id
+    db_employment.position = employment.position
+    db_employment.start_date = employment.start_date
+    db_employment.end_date = employment.end_date
     db.commit()
     db.refresh(db_employment)
     return db_employment
