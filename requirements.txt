@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+supabase
+openai
+requests
+python-dotenv
+pydantic
