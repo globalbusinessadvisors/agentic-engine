@@ -32,7 +32,7 @@ The **Agentic Engine** is a unified system that integrates the functionalities o
 - **Agentic Employment Solutions**: Implement modern employment models from [`agentic-employment`](https://github.com/globalbusinessadvisors/agentic-employment).
 - **Data Development**: Employ [`rUv-dev`](https://github.com/globalbusinessadvisors/rUv-dev) for data handling and processing.
 - **Comprehensive Reporting**: Generate detailed reports using [`agentic-reports`](https://github.com/globalbusinessadvisors/agentic-reports).
-- **Business Analytics and Machine Learning**: Integrate models from [`baml`](https://github.com/globalbusinessadvisors/baml) for predictive analytics.
+- **Business Analytics and Machine Learning**: Integrate models from [`baml`](https://github.com/globalbusinessadvisors/baml) for pydantic predictive analytics.
 - **AI-Powered User Interface**: Create interactive AI experiences with [`hugging-chat-ui`](https://github.com/globalbusinessadvisors/hugging-chat-ui).
 - **Scalable Database Management**: Use [`supabase`](https://github.com/globalbusinessadvisors/supabase) for efficient database solutions.
 - **Automation and Testing**: Automate tasks and testing with [`selenium`](https://github.com/globalbusinessadvisors/selenium).
